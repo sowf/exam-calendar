@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from rest_framework import generics
+from .serializers import UniversitySerializer
+from .models import University
 
-# Create your views here.
+
+class UniversityList(generics.ListAPIView):
+    serializer_class = UniversitySerializer
+
+    def get_queryset(self):
+        return University.objects.all()
+    
