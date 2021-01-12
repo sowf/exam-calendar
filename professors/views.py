@@ -16,8 +16,13 @@ class ProfessorList(generics.ListAPIView):
     def get_queryset(self):
         try:
             university = University.objects.get(slug=self.kwargs['slug'])
-            return Professor.objects.filter(university=university)
+            return Professor.objects.filter(university=university, is_checked=True)
         except University.DoesNotExist:
             raise NotFound({"msg":"Такого университета нет"}, status.HTTP_404_NOT_FOUND)
-    
-    
+
+class ProfessorCreate(generics.CreateAPIView):
+    serializer_class = ProfessorSerializer
+
+class ProfessorRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = ProfessorSerializer
+    queryset = Professor.objects.all()

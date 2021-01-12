@@ -17,6 +17,7 @@ class University(models.Model):
 class Professor(models.Model):
     full_name = models.CharField(max_length=150)
     birth_date = models.DateField()
+    is_checked = models.BooleanField(default=False)
     # subject = models.ForeignKey()
     university = models.ForeignKey(University, on_delete=models.CASCADE)
 

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import University, Professor
+from .models import University, Professor, ProfessorRate
 
 
 class UniversitySerializer(serializers.ModelSerializer):
@@ -10,4 +10,10 @@ class UniversitySerializer(serializers.ModelSerializer):
 class ProfessorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Professor
-        fields = ['id', 'full_name', 'birth_date', 'university']
+        fields = ['id', 'is_checked', 'full_name', 'birth_date', 'university']
+        read_only_fields = ['is_checked']
+
+class ProfessorRateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProfessorRate
+        fields = ['rate', 'professor']
