@@ -16,4 +16,4 @@ class ProfessorSerializer(serializers.ModelSerializer):
 class ProfessorRateSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProfessorRate
-        fields = ['rate', 'professor']
+        fields = ['rate']

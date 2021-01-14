@@ -1,7 +1,8 @@
+from django.shortcuts import get_object_or_404
 from rest_framework import generics, status
 from rest_framework.exceptions import NotFound
-from .serializers import UniversitySerializer, ProfessorSerializer
-from .models import University, Professor
+from .serializers import UniversitySerializer, ProfessorSerializer, ProfessorRateSerializer
+from .models import University, Professor, ProfessorRate
 
 
 class UniversityList(generics.ListAPIView):
@@ -26,3 +27,9 @@ class ProfessorCreate(generics.CreateAPIView):
 class ProfessorRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProfessorSerializer
     queryset = Professor.objects.all()
+
+class ProfessorRateCreate(generics.CreateAPIView):
+    serializer_class = ProfessorRateSerializer
+
+    def perform_create(self, serializer):
+        professor = get_object_or_404(Professor, pk=self.kwargs['pk'])

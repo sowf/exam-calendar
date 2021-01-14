@@ -3,7 +3,7 @@ from django.urls import path, re_path
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-from professors.views import UniversityList, ProfessorList, ProfessorCreate, ProfessorRetrieveUpdateDestroy
+from professors.views import UniversityList, ProfessorList, ProfessorCreate, ProfessorRetrieveUpdateDestroy, ProfessorRateCreate
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -26,5 +26,6 @@ urlpatterns = [
    path('api/universities', UniversityList.as_view()),
    path('api/professors/', ProfessorCreate.as_view()),
    path('api/professors/<int:pk>', ProfessorRetrieveUpdateDestroy.as_view()),
+   path('api/professors/<int:pk>/rate', ProfessorRateCreate.as_view()),
    path('api/professors/<slug:slug>', ProfessorList.as_view()),
 ]
