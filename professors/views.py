@@ -33,3 +33,4 @@ class ProfessorRateCreate(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         professor = get_object_or_404(Professor, pk=self.kwargs['pk'])
+        serializer.save(professor=professor, user=self.request.user)
