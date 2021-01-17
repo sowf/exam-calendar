@@ -1,6 +1,6 @@
 # exam-calendar
 This project was created with [DjangoRestFramework](https://www.django-rest-framework.org/).
-It is deployed [here](https://www.django-rest-framework.org/)
+It is deployed [here](https://www.henkaku.com/)
 
 ### What it is all about?
 
@@ -14,11 +14,10 @@ Users can also add main points, which are keys for succesfully passing an exam.
 
 The main idea of that app that users can vote for and against everything. For example if professor's name isn't true they can downvote this instance. 
 Another example comes with useful sources: if they are really useful users will upvote them. 
-If an instance has too many downvotes it is being deleted and never showed again. User will get special rate...
 
 ### Routes
 
-Although, project also has a documentation inside itself, here are the main endpoints:
+Although, project also has a documentation inside, here are the main endpoints:
 
 1. `api/universities [GET]` - get all universities supported
 2. `api/professors/ [POST]` - create new professor
