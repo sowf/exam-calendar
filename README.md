@@ -1,6 +1,6 @@
 # exam-calendar
 This project was created with [DjangoRestFramework](https://www.django-rest-framework.org/).
-It is deployed [here](https://www.henkaku.com/)
+It is deployed [here](https://www.heroku.com/)
 
 ### What it is all about?
 
