@@ -27,7 +27,6 @@ class Subject(models.Model):
 class Professor(models.Model):
     full_name = models.CharField('ФИО', max_length=150)
     birth_date = models.DateField('Дата рождения')
-    is_checked = models.BooleanField('Проверен?', default=False)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     university = models.ForeignKey(University, on_delete=models.CASCADE)
 
@@ -58,6 +57,7 @@ class ProfessorRate(models.Model):
         verbose_name_plural = 'Рейтинги профессоров'
 
 class ProfessorStory(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
     text = models.TextField('Байка о профессоре')
 
