@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
 # Local
     'professors.apps.ProfessorsConfig',
+    'exams.apps.ExamsConfig',
 ]
 
 MIDDLEWARE = [
