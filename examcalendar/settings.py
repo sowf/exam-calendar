@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'drf_yasg',
 
 # Local
-    'professors',
+    'professors.apps.ProfessorsConfig',
 ]
 
 MIDDLEWARE = [

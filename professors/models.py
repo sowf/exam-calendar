@@ -65,6 +65,26 @@ class ProfessorStory(models.Model):
         verbose_name = 'История о профессоре'
         verbose_name_plural = 'Истории о профессорах'
 
+class ProfessorVote(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
+    up = models.BooleanField('Вверх?')
+    down = models.BooleanField('Вниз?')
+
+    class Meta:
+        verbose_name = 'Голос за профессора'
+        verbose_name_plural = 'Голоса за профессоров'
+
+class ProfessorStoryVote(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    professor = models.ForeignKey(ProfessorStory, on_delete=models.CASCADE)
+    up = models.BooleanField('Вверх?')
+    down = models.BooleanField('Вниз?')
+
+    class Meta:
+        verbose_name = 'Голос за рассказ'
+        verbose_name_plural = 'Голоса за рассказы'
+
 class SubjectRate(models.Model):
     rate = models.PositiveIntegerField(
         'Рейтинг',
