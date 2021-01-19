@@ -30,13 +30,17 @@ urlpatterns = [
    path('admin/', admin.site.urls),
 
 # Professors
-   path('api/universities/', UniversityList.as_view()),
-   path('api/subjects/', SubjectList.as_view()),
-   path('api/subjects/<int:pk>/rate/', SubjectRateCreate.as_view()),
-   path('api/professors/<slug:slug>/', ProfessorListCreate.as_view()),
-   path('api/professors/<int:pk>/rate/', ProfessorRateCreate.as_view()),
-   path('api/professors/<int:pk>/stories/', ProfessorStoryListCreate.as_view()),
+   path('api/universities', UniversityList.as_view()),
+   path('api/subjects', SubjectList.as_view()),
+   path('api/subjects/<int:pk>/rate', SubjectRateCreate.as_view()),
+   path('api/professors/<slug:slug>', ProfessorListCreate.as_view()),# Исправить не логично
+   path('api/professors/<int:pk>/rate', ProfessorRateCreate.as_view()),
+   path('api/professors/<int:pk>/up', ProfessorRateCreate.as_view()),
+   path('api/professors/<int:pk>/down', ProfessorRateCreate.as_view()),
+   path('api/professors/<int:pk>/stories', ProfessorStoryListCreate.as_view()),
    path('api/story/<int:pk>/', ProfessorStoryListCreate.as_view()),
+   path('api/story/<int:pk>/up', ProfessorStoryListCreate.as_view()),
+   path('api/story/<int:pk>/down', ProfessorStoryListCreate.as_view()),
 
 # Exams
 ]

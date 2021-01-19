@@ -77,7 +77,7 @@ class ProfessorVote(models.Model):
 
 class ProfessorStoryVote(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    professor = models.ForeignKey(ProfessorStory, on_delete=models.CASCADE)
+    story = models.ForeignKey(ProfessorStory, on_delete=models.CASCADE)
     up = models.BooleanField('Вверх?')
     down = models.BooleanField('Вниз?')
 

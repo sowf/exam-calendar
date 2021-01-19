@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import University, Subject, Professor, ProfessorRate, \
-    ProfessorStory, SubjectRate
+    ProfessorStory, SubjectRate, ProfessorVote
 
 
 class UniversitySerializer(serializers.ModelSerializer):
@@ -33,3 +33,14 @@ class ProfessorStorySerializer(serializers.ModelSerializer):
         model = ProfessorStory
         fields = ['id', 'professor', 'text']
         read_only_fields = ['professor']
+
+class ProfessorVoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProfessorVote
+        fields = ['professor', 'up', 'down']
+        read_only_fields = ['professor']
+
+class ProfessorStoryVoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ['story', 'up', 'down']
+        read_only_fields = ['story']

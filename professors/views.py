@@ -1,9 +1,11 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import generics, status
 from rest_framework.exceptions import NotFound
-from .serializers import UniversitySerializer, ProfessorSerializer, ProfessorRateSerializer, \
-    SubjectSerializer, ProfessorStorySerializer, SubjectRateSerializer
-from .models import University, Subject, Professor, ProfessorRate, ProfessorStory
+from .serializers import UniversitySerializer, ProfessorSerializer, ProfessorRateSerializer,\
+    SubjectSerializer, ProfessorStorySerializer, SubjectRateSerializer,\
+    ProfessorVoteSerializer
+from .models import University, Subject, Professor, ProfessorRate, ProfessorStory,\
+    ProfessorVote
 
 
 class UniversityList(generics.ListAPIView):
@@ -52,3 +54,10 @@ class ProfessorStoryListCreate(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         professor = get_object_or_404(Professor, pk=self.kwargs['pk'])
         serializer.save(professor=professor, user=self.request.user)
+
+class ProfessorStoryUpVoteCreate(generics.CreateAPIView):
+    serializer_class = ProfessorVoteSerializer
+
+    def perform_create(self, serializer):
+        professor = get_object_or_404(Professor, pk=self.kwargs['pk'])
+        person, created = ProfessorVote.objects.get_or_create(professor=professor, user=self.request.user)
