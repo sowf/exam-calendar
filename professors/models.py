@@ -68,18 +68,30 @@ class ProfessorStory(models.Model):
 class ProfessorVote(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
-    up = models.BooleanField('Вверх?')
-    down = models.BooleanField('Вниз?')
+    vote_int = models.IntegerField(
+        'Голос',
+        default=0,
+        validators=[
+            MaxValueValidator(1),
+            MinValueValidator(-1)
+        ]
+    )
 
     class Meta:
         verbose_name = 'Голос за профессора'
         verbose_name_plural = 'Голоса за профессоров'
 
-class ProfessorStoryVote(models.Model):
+class StoryVote(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     story = models.ForeignKey(ProfessorStory, on_delete=models.CASCADE)
-    up = models.BooleanField('Вверх?')
-    down = models.BooleanField('Вниз?')
+    vote_int = models.IntegerField(
+        'Голос',
+        default=0,
+        validators=[
+            MaxValueValidator(1),
+            MinValueValidator(-1)
+        ]
+    )
 
     class Meta:
         verbose_name = 'Голос за рассказ'

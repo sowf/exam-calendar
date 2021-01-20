@@ -3,9 +3,9 @@ from rest_framework import generics, status
 from rest_framework.exceptions import NotFound
 from .serializers import UniversitySerializer, ProfessorSerializer, ProfessorRateSerializer,\
     SubjectSerializer, ProfessorStorySerializer, SubjectRateSerializer,\
-    ProfessorVoteSerializer
+    ProfessorVoteSerializer, StoryVoteSerializer
 from .models import University, Subject, Professor, ProfessorRate, ProfessorStory,\
-    ProfessorVote
+    ProfessorVote, ProfessorStory
 
 
 class UniversityList(generics.ListAPIView):
@@ -55,9 +55,30 @@ class ProfessorStoryListCreate(generics.ListCreateAPIView):
         professor = get_object_or_404(Professor, pk=self.kwargs['pk'])
         serializer.save(professor=professor, user=self.request.user)
 
-class ProfessorStoryUpVoteCreate(generics.CreateAPIView):
+class ProfessorUpVoteCreate(generics.CreateAPIView):
     serializer_class = ProfessorVoteSerializer
 
     def perform_create(self, serializer):
         professor = get_object_or_404(Professor, pk=self.kwargs['pk'])
-        person, created = ProfessorVote.objects.get_or_create(professor=professor, user=self.request.user)
+        serializer.save(professor=professor, user=self.request.user, vote_int=1)
+
+class ProfessorDownVoteCreate(generics.CreateAPIView):
+    serializer_class = ProfessorVoteSerializer
+
+    def perform_create(self, serializer):
+        professor = get_object_or_404(Professor, pk=self.kwargs['pk'])
+        serializer.save(professor=professor, user=self.request.user, vote_int=-1)
+
+class StoryUpVoteCreate(generics.CreateAPIView):
+    serializer_class = StoryVoteSerializer
+
+    def perform_create(self, serializer):
+        story = get_object_or_404(ProfessorStory, pk=self.kwargs['pk'])
+        serializer.save(story=story, user=self.request.user, vote_int=1)
+
+class StoryDownVoteCreate(generics.CreateAPIView):
+    serializer_class = StoryVoteSerializer
+
+    def perform_create(self, serializer):
+        story = get_object_or_404(ProfessorStory, pk=self.kwargs['pk'])
+        serializer.save(story=story, user=self.request.user, vote_int=-1)

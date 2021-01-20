@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import University, Subject, Professor, ProfessorRate, ProfessorStory,\
-    ProfessorVote, ProfessorStoryVote, SubjectRate
+    ProfessorVote, StoryVote, SubjectRate
 
 
 class UniversityAdmin(admin.ModelAdmin):
@@ -12,5 +12,5 @@ admin.site.register(Professor)
 admin.site.register(ProfessorRate)
 admin.site.register(ProfessorStory)
 admin.site.register(ProfessorVote)
-admin.site.register(ProfessorStoryVote)
+admin.site.register(StoryVote)
 admin.site.register(SubjectRate)
