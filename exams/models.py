@@ -7,10 +7,9 @@ class Exam(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name='Предметы')
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE, verbose_name='Профессор')
     date = models.DateField('Дата экзамена')
-    created_at = models.DateTimeField('Дата создания', auto_now_add=True)
 
     def __str__(self):
-        return self.subject
+        return str(self.subject)
 
     class Meta:
         verbose_name = 'Экзамен'

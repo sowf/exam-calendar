@@ -7,6 +7,7 @@ from professors.views import UniversityList, ProfessorListCreate,\
    ProfessorRateCreate, SubjectList, ProfessorStoryListCreate,\
    SubjectRateCreate, ProfessorUpVoteCreate, ProfessorDownVoteCreate,\
    StoryUpVoteCreate, StoryDownVoteCreate
+from exams.views import ExamListCreate
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -39,9 +40,9 @@ urlpatterns = [
    path('api/professors/<int:pk>/up', ProfessorUpVoteCreate.as_view()),
    path('api/professors/<int:pk>/down', ProfessorDownVoteCreate.as_view()),
    path('api/professors/<int:pk>/stories', ProfessorStoryListCreate.as_view()),
-   path('api/story/<int:pk>/', ProfessorStoryListCreate.as_view()),
    path('api/story/<int:pk>/up', StoryUpVoteCreate.as_view()),
    path('api/story/<int:pk>/down', StoryDownVoteCreate.as_view()),
 
 # Exams
+   path('api/exams', ExamListCreate.as_view()),
 ]
