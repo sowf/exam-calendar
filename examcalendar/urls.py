@@ -7,7 +7,7 @@ from professors.views import UniversityList, ProfessorListCreate,\
    ProfessorRateCreate, SubjectList, ProfessorStoryListCreate,\
    SubjectRateCreate, ProfessorUpVoteCreate, ProfessorDownVoteCreate,\
    StoryUpVoteCreate, StoryDownVoteCreate
-from exams.views import ExamListCreate
+from exams.views import ExamListCreate, RequirementListCreate
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -45,4 +45,5 @@ urlpatterns = [
 
 # Exams
    path('api/exams', ExamListCreate.as_view()),
+   path('api/exams/<int:pk>/requirements', RequirementListCreate.as_view()),
 ]

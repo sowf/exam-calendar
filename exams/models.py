@@ -28,9 +28,22 @@ class Requirement(models.Model):
         verbose_name_plural = 'Требования'
 
 class PrepareSource(models.Model):
+    TEXT = 'TXT'
+    URL = 'URL'
+    DOCUMENT = 'DOC'
+    SRC_TYPE_CHOICES = [
+        (TEXT, 'TEXT'),
+        (URL, 'URL'),
+        (DOCUMENT, 'DOCUMENT'),
+    ]
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE, verbose_name='Экзамен')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')    
     name = models.CharField('Название', max_length=150)
+    src_type = models.CharField(
+        max_length=3,
+        choices=SRC_TYPE_CHOICES,
+        default=TEXT,
+    )
     url = models.URLField('Ссылка', blank=True)
     text = models.TextField('Текст', blank=True)
     document = models.FileField('Файл', blank=True)
